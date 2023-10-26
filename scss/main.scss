@@ -1,0 +1,310 @@
+@import './resets';
+@import './variables';
+
+
+@function gradients($gradient-color){
+    @return map-get($gradients , $gradient-color);
+}
+
+@function weight($font-weight){
+    @return map-get($font-weights , $font-weight);
+}
+
+body{
+    width: 100vw;
+    height: 100vh;
+    
+}
+
+.container{
+    position: absolute;
+    top:50%;
+    left:50%;
+    width: 100vw;
+    max-width: 1600px;
+    height: 100vh;
+    max-height: 738px;
+    transform: translate(-50% , -50%);
+}
+
+main{
+    height: 100%;
+    width:100%;
+    background-color: $white;
+    background-image: url(../images/bg-main-desktop.png);
+    background-size: 30% 100%;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .cards{
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        padding-right: 5rem;
+
+        .card{
+            width: 290px;
+            height: 170px;
+            border-radius: 9px;
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .card-front{
+            padding: 1rem;
+            background-image: url(../images/bg-card-front.png);
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            transform: translateX(-25%);
+
+            .avatars{
+                display: flex;
+                align-items: center;
+
+                .circle{
+                    border-radius: 50%;
+                }
+
+                .circle-1{
+                    height: 30px;
+                    width: 30px;
+                    background-color: $white;
+                }
+
+                .circle-2{
+                    height: 15px;
+                    width: 15px;
+                    border: 1px solid $white;
+                    margin-left: 10px;
+                }
+            }
+
+            .card-digits{
+                margin-top: 40px;
+                font-size: 1.1rem;
+                font-weight: weight(medium);
+                color: $white;
+                /*letter-spacing: 0.1rem;*/
+            }
+
+            .cardholder{
+                margin-top: 15px;
+                display: flex;
+                align-items: center;
+
+                .name{
+                    font-size: 0.7rem;
+                    font-weight: weight(medium);
+                    color: $white;
+                }
+
+                .expiry{
+                    display: flex;
+                    align-items: center;
+                    color: $white;
+                    font-size: 0.7rem;
+                    margin-left:auto;
+                }
+            }
+        }
+
+        .card-back{
+            margin-top: 30px;
+            background-image: url(../images/bg-card-back.png);
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
+
+            .cvc{
+                position: absolute;
+                color: $white;
+                font-size: 0.7rem;
+                top:4.7rem;
+                right:30px;
+                letter-spacing: 0.1rem;
+            }
+        }
+    }
+
+    .inputs{
+        width: 50%;
+        padding-left: 2rem;
+
+        form{
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+
+            label{
+                color: $very-dark-violet;
+                font-size: 0.7rem;
+                font-weight: weight(bold);
+                margin-bottom: 5px;
+
+                &:nth-of-type(2){
+                    margin-top: 15px;
+                }
+            }
+
+            input{
+                border: 1.5px solid $light-grayish-violet;
+                border-radius: 5px;
+                padding: 0.5rem;
+                color: $very-dark-violet;
+                font-family: $Space-Grotesk;
+                font-size: 0.8rem;
+                font-weight: weight(medium);
+
+                &::placeholder{
+                    color: $dark-grayish-violet;
+                    font-family: $Space-Grotesk;
+                    font-size: 0.75rem;
+                    font-weight: weight(medium);
+                }
+
+                &:focus{
+                    border: 1.5px solid $very-dark-violet;
+                }
+
+                &:active{
+                    background-color: $white !important;
+                }
+            }
+
+            .cardname-error{
+                font-size: 0.65rem;
+                font-weight: weight(medium);
+                color: $input-errors;
+                margin-top: 5px;
+                display: none;
+            }
+
+            .cardnumber-error{
+                font-size: 0.65rem;
+                font-weight: weight(medium);
+                color: $input-errors;
+                margin-top: 5px;
+                display: none;
+            }
+
+            .row-inputs{
+                display: flex;
+                width: 100%;
+                margin-top: 20px;
+
+                .expiry{
+                    display: flex;
+                    flex-direction: column;
+
+                    .expiry-header{
+                        color: $very-dark-violet;
+                        font-size: 0.7rem;
+                        font-weight: weight(bold);
+                        margin-bottom: 5px;
+                    }
+
+                    .expiry-inputs{
+                        display: flex;
+
+                        .month{
+                            width: 40%;
+                        }
+
+                        .year{
+                            width: 60%;
+                            margin-left: 8px;
+                        }
+                    }
+
+                    .expiry-error{
+                        font-size: 0.65rem;
+                        font-weight: weight(medium);
+                        color: $input-errors;
+                        margin-top: 5px;
+                        display: none;
+                    }
+                }
+
+                .cvc{
+                    display: block;
+                    margin-left: 15px;
+
+                    .cvc-header{
+                        color: $very-dark-violet;
+                        font-size: 0.7rem;
+                        font-weight: weight(bold);
+                        margin-bottom: 5px;
+                    }
+
+                    .cvc-error{
+                        font-size: 0.65rem;
+                        font-weight: weight(medium);
+                        color: $input-errors;
+                        margin-top: 5px;
+                        display: none;
+                    }
+                }
+            }
+
+            .confirm{
+                width: 100%;
+                padding: 0.8rem;
+                background-color: $very-dark-violet;
+                color: $light-grayish-violet;
+                border-radius: 5px;
+                font-size: 0.8rem;
+                font-weight: weight(medium);
+                font-family: $Space-Grotesk;
+                margin-top: 20px;
+            }
+        }
+
+        .thank-you{
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            display: none;
+
+            .tick-icon{
+                height: 60px;
+                width: 60px;
+                margin: 0 auto;
+            }
+
+            .thank-you-text{
+                color: $very-dark-violet;
+                font-size: 1.6rem;
+                font-weight: weight(semi-bold);
+                margin: 25px auto 0 auto;
+                letter-spacing: 0.2rem;
+            }
+
+            p{
+                color: $dark-grayish-violet;
+                font-size: 1rem;
+                font-weight: weight(semi-bold);
+                margin: 15px auto 0 auto;
+            }
+
+            .continue{
+                width: 100%;
+                padding: 0.8rem;
+                background-color: $very-dark-violet;
+                color: $light-grayish-violet;
+                border-radius: 5px;
+                font-size: 0.8rem;
+                font-weight: weight(medium);
+                font-family: $Space-Grotesk;
+                margin-top: 40px;
+            }
+        }
+    }
+}
+
+@import './responsive'
